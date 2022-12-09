@@ -1,0 +1,53 @@
+name: down
+description: A local music player made using flutter
+
+publish_to: 'none' 
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.18.5 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.2
+  flutter_spinkit: ^5.1.0
+  custom_switch: ^0.0.1
+  flutter_switch: ^0.3.2
+  audio_video_progress_bar: ^0.11.0
+  assets_audio_player: ^3.0.5
+  hive: ^2.2.1
+  shared_preferences: ^2.0.15
+  hive_flutter: ^1.1.0
+  on_audio_query: ^2.6.1
+  marquee: ^2.2.1
+  switcher_button: ^0.0.4
+  hexcolor: ^3.0.1
+  curved_navigation_bar: ^1.0.3
+  share_plus: ^6.1.0
+  flutter_markdown: ^0.6.12
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+  hive_generator: 
+  build_runner: 
+  flutter_launcher_icons: ^0.10.0
+
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/
+    - assets/images/
+    - assets/audio/
+
+  fonts:
+    - family: Inter
+      fonts:
+        - asset: assets/fonts/Inter-Bold.ttf
+        - asset: assets/fonts/Inter-Semibold.ttf
+        - asset: assets/fonts/Inter-Regular.ttf
+        - asset: assets/fonts/Inter-ExtraBold.ttf
