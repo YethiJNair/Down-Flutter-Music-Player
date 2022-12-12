@@ -1,19 +1,16 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:assets_audio_player/assets_audio_player.dart';
-import 'package:down/colors/colors.dart';
+import 'package:down/Colors/colors.dart';
 import 'package:down/model/dbfunctions.dart';
 import 'package:down/model/playlistmodel.dart';
 import 'package:down/model/songModel.dart';
 
 import 'package:flutter/material.dart';
-import 'package:hexcolor/hexcolor.dart';
 
 import 'package:hive_flutter/adapters.dart';
-import 'package:down/screens/nowPlaying2.dart';
+import 'package:down/screens/now_playing.dart';
 import 'package:on_audio_query/on_audio_query.dart';
-
-import '../../model/songModel.dart';
 
 class ScreenPlaylist extends StatefulWidget {
   ScreenPlaylist(
@@ -51,17 +48,14 @@ class _ScreenPlaylistState extends State<ScreenPlaylist> {
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          begin: Alignment.topCenter,
+          begin: Alignment.topLeft,
           end: Alignment.bottomCenter,
           // stops: [0.1, 0.5, 0.7, 0.9],
-          colors: [
-            HexColor("#0f1223"),
-            HexColor("#070915"),
-          ],
+          colors: [gr1, Colors.black],
         ),
       ),
       child: Scaffold(
-        backgroundColor: black.withOpacity(0),
+        backgroundColor: trans,
         body: SafeArea(
           child: SingleChildScrollView(
             child: Column(
@@ -69,7 +63,7 @@ class _ScreenPlaylistState extends State<ScreenPlaylist> {
                 Container(
                   height: 370,
                   decoration: BoxDecoration(
-                    color: black.withOpacity(0),
+                    color: trans,
                     borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(20),
                       bottomRight: Radius.circular(20),
@@ -78,7 +72,7 @@ class _ScreenPlaylistState extends State<ScreenPlaylist> {
                   child: Column(
                     children: [
                       Image.asset(
-                        "assets/logo.jpg",
+                        "assets/logo.png",
                         height: 280,
                         width: 280,
                       ),
@@ -142,14 +136,15 @@ class _ScreenPlaylistState extends State<ScreenPlaylist> {
                 return ListTile(
                   onTap: () {
                     player.open(Playlist(audios: plstsongs, startIndex: index),
-                        showNotification: true, loopMode: LoopMode.playlist);
+                        showNotification: notificationStatus,
+                        loopMode: LoopMode.playlist);
                     Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => const NowPlaying2(),
                     ));
-                    /* Navigator.push(context,
-                    MaterialPageRoute(builder: ((context) => playingNow()))); */
                   },
                   leading: QueryArtworkWidget(
+                    artworkHeight: 55,
+                    artworkWidth: 55,
                     artworkFit: BoxFit.cover,
                     id: songs[index].id!,
                     type: ArtworkType.AUDIO,
@@ -158,7 +153,7 @@ class _ScreenPlaylistState extends State<ScreenPlaylist> {
                     quality: 100,
                     artworkBorder: BorderRadius.circular(10),
                     nullArtworkWidget: ClipRRect(
-                      borderRadius: const BorderRadius.all(Radius.circular(50)),
+                      borderRadius: const BorderRadius.all(Radius.circular(15)),
                       child: Image.asset(
                         'assets/images/music.jpg',
                         fit: BoxFit.cover,
@@ -220,6 +215,7 @@ class _ScreenPlaylistState extends State<ScreenPlaylist> {
                                           PlaylistSongs(
                                               playlistname: widget.playlistname,
                                               playlistssongs: songs));
+                                      // Navigator.pop(context);
                                     });
                                     setState(() {});
                                     Navigator.pop(context);

@@ -15,7 +15,7 @@ class FavSongs extends StatelessWidget {
                 leading: ClipRRect(
                   borderRadius: BorderRadius.circular(5),
                   child:
-                      Image.asset('assets/images/The_Weeknd_-_After_Hours.png'),
+                      Image.asset('assets/images/The_Weeknd_-_After_Hours.jpg'),
                 ),
                 trailing: Row(
                   mainAxisSize: MainAxisSize.min,

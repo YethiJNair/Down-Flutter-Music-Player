@@ -1,15 +1,14 @@
-import 'package:down/colors/colors.dart';
 import 'package:flutter/material.dart';
 
 class AlbumArt extends StatelessWidget {
-  const AlbumArt(
+  AlbumArt(
       {super.key,
       required this.imageName,
       required this.head,
-      required this.song});
+      this.song = " "});
   final String imageName;
   final String head;
-  final int song;
+  late String song;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +17,7 @@ class AlbumArt extends StatelessWidget {
       child: Stack(
         children: [
           Container(
-            height: 240,
+            height: 260,
             width: 200,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
@@ -28,12 +27,12 @@ class AlbumArt extends StatelessWidget {
           ),
           Positioned(
             right: 29,
-            top: 180,
+            top: 190,
             child: Container(
               height: 50,
               width: 150,
               decoration: BoxDecoration(
-                  color: orange.withOpacity(0.9),
+                  color: Colors.white.withOpacity(0.7),
                   borderRadius: BorderRadius.circular(10)),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -51,7 +50,9 @@ class AlbumArt extends StatelessWidget {
                       Text(
                         "$song songs",
                         style: TextStyle(
-                            fontSize: 11, fontWeight: FontWeight.w500),
+                            fontFamily: "Inter",
+                            fontWeight: FontWeight.bold,
+                            fontSize: 11),
                       )
                     ],
                   ),

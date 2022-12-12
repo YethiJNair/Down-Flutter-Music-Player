@@ -1,10 +1,9 @@
 // ignore_for_file: camel_case_types, prefer_final_fields, non_constant_identifier_names, unused_local_variable
 
-import 'package:down/colors/colors.dart';
+import 'package:down/Colors/colors.dart';
 import 'package:down/model/dbfunctions.dart';
 import 'package:down/model/playlistmodel.dart';
 import 'package:flutter/material.dart';
-import 'package:hexcolor/hexcolor.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:down/widgets/playlists/screenPlaylist.dart';
 
@@ -24,45 +23,33 @@ class _playListsState extends State<playLists> {
   List<PlaylistSongs> playlist = [];
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          begin: Alignment.topCenter,
+          begin: Alignment.topLeft,
           end: Alignment.bottomCenter,
           // stops: [0.1, 0.5, 0.7, 0.9],
-          colors: [
-            HexColor("#0f1223"),
-            HexColor("#070915"),
-          ],
+          colors: [gr1, Colors.black],
         ),
       ),
       child: Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          backgroundColor: Colors.black.withOpacity(0),
+          backgroundColor: trans,
           elevation: 0,
-          title: Container(
-            padding: EdgeInsets.only(left: 10),
-            child: Row(
-              children: [
-                Text(
-                  "P",
-                  style: TextStyle(
-                      fontFamily: "Inter",
-                      fontSize: 25,
-                      fontWeight: FontWeight.w900,
-                      color: cyan),
-                ),
-                Text(
-                  "laylilst",
-                  style: TextStyle(
-                      fontFamily: "Inter",
-                      fontSize: 25,
-                      fontWeight: FontWeight.w900,
-                      color: white),
-                ),
-              ],
-            ),
+          title: Row(
+            children: const [
+              Text(
+                "Playlilst",
+                style: TextStyle(
+                    fontFamily: "Inter",
+                    fontSize: 35,
+                    fontWeight: FontWeight.w900,
+                    color: Colors.white),
+              ),
+            ],
           ),
           actions: [
             Padding(
@@ -82,7 +69,7 @@ class _playListsState extends State<playLists> {
             )
           ],
         ),
-        backgroundColor: black.withOpacity(0),
+        backgroundColor: trans,
         body: SafeArea(
           child: SingleChildScrollView(
             child: Column(
@@ -94,7 +81,6 @@ class _playListsState extends State<playLists> {
     );
   }
 
-  //----------------------------------------LIST OF PLAYLISTS--------------------------------------------------
   PlaylistList() {
     if (playlist.isEmpty) {
       const Padding(
@@ -105,9 +91,7 @@ class _playListsState extends State<playLists> {
               child: Text(
             'No Playlist Created',
             style: TextStyle(
-                fontSize: 20,
-                color: Color.fromARGB(255, 255, 255, 255),
-                fontWeight: FontWeight.w500),
+                fontSize: 20, color: Colors.white, fontWeight: FontWeight.w500),
           )),
         ),
       );
@@ -126,7 +110,7 @@ class _playListsState extends State<playLists> {
               itemBuilder: ((context, index) {
                 if (playlistbox.isEmpty) {
                   final controller = playlist[index].playlistname!;
-                  Center(
+                  const Center(
                     child: Text(
                       "Playlist Not Created",
                       style: TextStyle(
@@ -137,7 +121,7 @@ class _playListsState extends State<playLists> {
                   );
                 }
                 if (playlist.isEmpty) {
-                  Center(
+                  const Center(
                     child: Text(
                       "Playlist Not Created",
                       style: TextStyle(
@@ -147,96 +131,102 @@ class _playListsState extends State<playLists> {
                     ),
                   );
                 }
-                return ListTile(
-                  onTap: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: ((context) => ScreenPlaylist(
-                              allPlaylistSongs: playlist[index].playlistssongs!,
-                              playlistindex: index,
-                              playlistname: playlist[index].playlistname!)))),
-                  leading: ClipRRect(
-                    borderRadius: const BorderRadius.all(Radius.circular(10)),
-                    child: Image.asset(
-                      'assets/images/music.jpg',
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  // leading: Icon(
-                  //   Icons.queue_music_rounded,
-                  //   color: Colors.white,
-                  //   size: 35,
-                  // ),
-                  title: Text(
-                    playlist[index].playlistname.toString(),
-                    style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w500),
-                  ),
-                  trailing: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      IconButton(
-                          onPressed: () {
-                            showModalBottomSheet(
-                              context: context,
-                              builder: (context) =>
-                                  bottomSheetedit(context, index),
-                            );
-                          },
-                          icon: const Icon(
-                            Icons.edit,
-                            color: Colors.grey,
-                          )),
-                      IconButton(
-                        onPressed: (() {
-                          showDialog(
-                            context: context,
-                            builder: (context) {
-                              return AlertDialog(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                backgroundColor: Color.fromARGB(255, 0, 0, 0),
-                                title: Text(
-                                  "Delete Playlist",
-                                  style: TextStyle(color: Colors.white),
-                                ),
-                                content: Text(
-                                  "Are You Sure ?",
-                                  style: TextStyle(color: Colors.white),
-                                ),
-                                actions: [
-                                  TextButton(
-                                      onPressed: () {
-                                        Navigator.pop(context);
-                                      },
-                                      child: const Text("Cancel",
-                                          style: TextStyle(
-                                              color: Color.fromARGB(
-                                                  255, 213, 213, 213)))),
-                                  TextButton(
-                                      onPressed: () {
-                                        playlistbox.deleteAt(index);
-                                        Navigator.pop(context);
-                                      },
-                                      child: const Text("Delete",
-                                          style: TextStyle(
-                                              color: Color.fromARGB(
-                                                  255, 213, 213, 213))))
-                                ],
-                              );
-                            },
-                          );
-                        }),
-                        icon: const Icon(
-                          Icons.delete,
-                          color: Color.fromARGB(255, 132, 25, 25),
+                return Column(
+                  children: [
+                    ListTile(
+                      onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: ((context) => ScreenPlaylist(
+                                  allPlaylistSongs:
+                                      playlist[index].playlistssongs!,
+                                  playlistindex: index,
+                                  playlistname:
+                                      playlist[index].playlistname!)))),
+                      leading: ClipRRect(
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(10)),
+                        child: Image.asset(
+                          'assets/images/music.jpg',
+                          fit: BoxFit.cover,
                         ),
                       ),
-                    ],
-                  ),
+                      title: Text(
+                        playlist[index].playlistname.toString(),
+                        style: const TextStyle(
+                            fontSize: 20,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w500),
+                      ),
+                      trailing: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          IconButton(
+                              onPressed: () {
+                                showModalBottomSheet(
+                                  context: context,
+                                  builder: (context) =>
+                                      bottomSheetedit(context, index),
+                                );
+                              },
+                              icon: const Icon(
+                                Icons.edit_outlined,
+                                color: Colors.grey,
+                              )),
+                          IconButton(
+                            onPressed: (() {
+                              showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return AlertDialog(
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    backgroundColor:
+                                        Color.fromARGB(255, 50, 50, 50),
+                                    title: const Text(
+                                      "Delete Playlist",
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                    content: const Text(
+                                      "Are You Sure ?",
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                    actions: [
+                                      TextButton(
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                          },
+                                          child: Text("Cancel",
+                                              style: TextStyle(
+                                                  color: Color.fromARGB(
+                                                      255, 213, 213, 213)))),
+                                      TextButton(
+                                          onPressed: () {
+                                            playlistbox.deleteAt(index);
+                                            Navigator.pop(context);
+                                          },
+                                          child: Text("Delete",
+                                              style: TextStyle(
+                                                  color: Color.fromARGB(
+                                                      255, 213, 213, 213))))
+                                    ],
+                                  );
+                                },
+                              );
+                            }),
+                            icon: const Icon(
+                              Icons.delete_outlined,
+                              color: Colors.grey,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    )
+                  ],
                 );
               }),
             ),
@@ -253,7 +243,7 @@ class _playListsState extends State<playLists> {
             EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
         child: Container(
           height: 423 * 0.7,
-          color: Colors.black,
+          color: bottomsheetColor,
           child: Column(
             children: [playlistform(context)],
           ),
@@ -263,13 +253,14 @@ class _playListsState extends State<playLists> {
   }
 
   Widget bottomSheetedit(BuildContext context, int index) {
+    final height = MediaQuery.of(context).size.height;
     return SingleChildScrollView(
       child: Padding(
         padding:
             EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
         child: Container(
-          height: 423 * 0.7,
-          color: const Color.fromARGB(255, 24, 24, 24),
+          height: height * 0.30,
+          color: bottomsheetColor,
           child: Column(
             children: [editBottom(context, index)],
           ),
@@ -284,17 +275,9 @@ class _playListsState extends State<playLists> {
       child: Column(
         children: [
           Row(
-            children: [
+            children: const [
               Text(
-                "C",
-                style: TextStyle(
-                    fontFamily: "Inter",
-                    fontSize: 30,
-                    fontWeight: FontWeight.w900,
-                    color: cyan),
-              ),
-              Text(
-                "reate Playlist",
+                "Create Playlist",
                 style: TextStyle(
                     fontFamily: "Inter",
                     fontSize: 30,
@@ -311,7 +294,7 @@ class _playListsState extends State<playLists> {
             child: TextFormField(
               controller: _textEditingController,
               cursorHeight: 25,
-              style: TextStyle(color: Colors.white),
+              style: const TextStyle(color: Colors.white),
               decoration: const InputDecoration(
                 filled: true,
                 fillColor: Colors.black,
@@ -336,7 +319,7 @@ class _playListsState extends State<playLists> {
                 if (value!.trim() == '') {
                   return 'Name required';
                 }
-                if (value.trim().length > 10) {
+                if (value.trim().length > 15) {
                   return 'Enter Characters below 10 ';
                 }
 
@@ -364,10 +347,10 @@ class _playListsState extends State<playLists> {
             onPressed: () {
               Navigator.pop(context);
             },
-            style: ElevatedButton.styleFrom(backgroundColor: Colors.grey),
+            style: ElevatedButton.styleFrom(backgroundColor: buttonColor),
             child: const Text("Cancel")),
         ElevatedButton(
-            style: ElevatedButton.styleFrom(backgroundColor: cyan),
+            style: ElevatedButton.styleFrom(backgroundColor: buttonColor),
             onPressed: () {
               final isValid = formGlobalKey.currentState!.validate();
               if (isValid) {
@@ -390,14 +373,14 @@ class _playListsState extends State<playLists> {
         child: Column(
           children: [
             Row(
-              children: [
+              children: const [
                 Text(
                   "E",
                   style: TextStyle(
                       fontFamily: "Inter",
                       fontSize: 35,
                       fontWeight: FontWeight.w900,
-                      color: cyan),
+                      color: Colors.grey),
                 ),
                 Text(
                   "dit Playlist",
@@ -415,6 +398,7 @@ class _playListsState extends State<playLists> {
             Form(
               key: formGlobalKey1,
               child: TextFormField(
+                style: TextStyle(color: Colors.white),
                 controller: controller,
                 cursorHeight: 25,
                 decoration: const InputDecoration(
@@ -440,8 +424,8 @@ class _playListsState extends State<playLists> {
                   if (value!.trim() == '') {
                     return 'Name Required';
                   }
-                  if (value.trim().length > 10) {
-                    return 'Enter Characters below 10 ';
+                  if (value.trim().length > 15) {
+                    return 'Enter Characters below 15 ';
                   }
                   return null;
                 },
@@ -462,13 +446,15 @@ class _playListsState extends State<playLists> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         ElevatedButton(
-            style: ElevatedButton.styleFrom(backgroundColor: Colors.grey),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: buttonColor,
+            ),
             onPressed: () {
               Navigator.pop(context);
             },
-            child: const Text("cancel")),
+            child: const Text("Cancel")),
         ElevatedButton(
-            style: ElevatedButton.styleFrom(backgroundColor: cyan),
+            style: ElevatedButton.styleFrom(backgroundColor: buttonColor),
             onPressed: () {
               final isValid = formGlobalKey1.currentState!.validate();
               if (isValid) {

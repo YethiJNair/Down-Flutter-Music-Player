@@ -1,5 +1,5 @@
-import 'package:down/colors/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:down/screens/search_screen.dart';
 
 class SearchBar extends StatelessWidget {
   const SearchBar({super.key});
@@ -12,21 +12,27 @@ class SearchBar extends StatelessWidget {
       height: height * .055,
       width: double.infinity,
       child: Padding(
-        padding:
-            const EdgeInsets.only(left: 15.0, right: 15, top: 8, bottom: 8),
+        padding: const EdgeInsets.only(left: 8.0, right: 8),
         child: TextFormField(
+          // autofocus: false,
+          onTap: () {
+            Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => ScreenSearch(),
+            ));
+          },
           decoration: InputDecoration(
             filled: true,
             isDense: false,
             hintStyle: Theme.of(context)
                 .textTheme
-                .bodyLarge!
-                .copyWith(color: Color.fromARGB(255, 0, 0, 0)),
+                .bodyMedium!
+                .copyWith(color: Colors.grey),
             prefixIcon: const Icon(Icons.search),
             hintText: "Search",
-            fillColor: cyan,
+            fillColor: Colors.white,
             enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(width: 1, color: cyan),
+                borderSide: const BorderSide(
+                    width: 1, color: Color.fromARGB(255, 255, 255, 255)),
                 borderRadius: BorderRadius.circular(8) //<-- SEE HERE
                 ),
           ),

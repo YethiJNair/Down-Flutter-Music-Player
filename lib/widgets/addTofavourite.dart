@@ -1,6 +1,5 @@
 // ignore_for_file: camel_case_types
 
-import 'package:down/colors/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:down/model/dbfunctions.dart';
 import 'package:down/model/favouriteModel.dart';
@@ -70,9 +69,9 @@ class _addToFavState extends State<addToFav> {
                     content: Text("Removed from favourites")));
               }
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.favorite,
-              color: cyan,
+              color: Colors.grey,
             ));
   }
 }

@@ -3,6 +3,7 @@ import 'package:down/model/favouriteModel.dart';
 import 'package:down/model/mostPlayed.dart';
 import 'package:down/model/playlistmodel.dart';
 import 'package:down/model/recentlyPlayed.dart';
+import 'package:down/screens/most_played.dart';
 
 late Box<favsongs> favsongsdb;
 opendb_fav() async {
@@ -39,7 +40,18 @@ openmostplayeddb() async {
 }
 
 updatePlayedSongsCount(MostPlayed value, int index) {
+  List<MostPlayed> list1 = mostplayedsongs.values.toList();
+  bool isAlready =
+      list1.where((element) => element.songname == value.songname).isEmpty;
+  if (isAlready == true) {
+    mostplayedsongs.add(value);
+  } else {
+    int index =
+        list1.indexWhere((element) => element.songname == value.songname);
+    mostplayedsongs.deleteAt(index);
+    // mostplayedsongs.add(value);
+    mostplayedsongs.put(index, value);
+  }
   int count = value.count;
   value.count = count + 1;
-  mostplayedsongs.put(index, value);
 }

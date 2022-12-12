@@ -1,9 +1,13 @@
 import 'package:assets_audio_player/assets_audio_player.dart';
-import 'package:down/colors/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:down/colors/colors.dart';
+import 'package:down/model/dbfunctions.dart';
+import 'package:down/model/mostPlayed.dart';
+import 'package:down/model/recentlyPlayed.dart';
 import 'package:down/model/songModel.dart';
-import 'package:down/screens/nowPlaying2.dart';
+import 'package:down/screens/now_playing.dart';
+import 'package:down/screens/recent_played.dart';
 import 'package:down/widgets/playlists/addToPlaylist.dart';
 import 'package:down/widgets/addTofavourite.dart';
 import 'package:on_audio_query/on_audio_query.dart';
@@ -46,6 +50,7 @@ class _allSongsScreenState extends State<allSongsScreen> {
         valueListenable: box.listenable(),
         builder: ((context, Box<Songs> allsongbox, child) {
           List<Songs> allDbdongs = allsongbox.values.toList();
+          List<MostPlayed> allmostplayedsongs = mostplayedsongs.values.toList();
           if (allDbdongs.isEmpty) {
             return const Center(
               child: CircularProgressIndicator(),
@@ -63,13 +68,27 @@ class _allSongsScreenState extends State<allSongsScreen> {
               itemBuilder: (context, index) {
                 bool fav = true;
                 Songs songs = allDbdongs[index];
+                MostPlayed MPsongs = allmostplayedsongs[index];
+                // MostPlayed MPsongs = allmostplayedsongs[index];
+                RecentlyPlayed rsongs;
                 return Padding(
                   padding: const EdgeInsets.fromLTRB(0, 5, 0, 2),
                   child: ListTile(
                     onTap: (() {
+                      rsongs = RecentlyPlayed(
+                          songname: songs.songname,
+                          id: songs.id,
+                          artist: songs.artist,
+                          duration: songs.duration,
+                          songurl: songs.songurl);
+
+                      updateRecentPlayed(rsongs, index);
+
+                      updatePlayedSongsCount(MPsongs, index);
+                      // updatePlayedSongsCount(MPsongs, index);
                       _audioPlayer.open(
                           Playlist(audios: convertAudios, startIndex: index),
-                          showNotification: true,
+                          showNotification: notificationStatus,
                           headPhoneStrategy:
                               HeadPhoneStrategy.pauseOnUnplugPlayOnPlug,
                           loopMode: LoopMode.playlist);
@@ -80,6 +99,8 @@ class _allSongsScreenState extends State<allSongsScreen> {
                               builder: ((context) => NowPlaying2())));
                     }),
                     leading: QueryArtworkWidget(
+                      artworkHeight: 55,
+                      artworkWidth: 55,
                       id: songs.id!,
                       type: ArtworkType.AUDIO,
                       artworkFit: BoxFit.cover,
@@ -100,9 +121,8 @@ class _allSongsScreenState extends State<allSongsScreen> {
                       songs.artist!,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        color:
-                            Color.fromARGB(255, 255, 255, 255).withOpacity(0.7),
+                      style: const TextStyle(
+                        color: Colors.grey,
                         fontFamily: "Inter",
                       ),
                     ),
@@ -110,8 +130,8 @@ class _allSongsScreenState extends State<allSongsScreen> {
                       songs.songname!,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                          color: cyan,
+                      style: const TextStyle(
+                          color: Colors.white,
                           fontFamily: "Inter",
                           fontWeight: FontWeight.bold),
                     ),
