@@ -18,7 +18,7 @@ class AlbumArt extends StatelessWidget {
         children: [
           Container(
             height: 260,
-            width: 200,
+            width: 210,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
               image: DecorationImage(

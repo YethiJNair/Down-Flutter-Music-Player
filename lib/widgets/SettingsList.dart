@@ -57,7 +57,7 @@ class _SettingsListState extends State<SettingsList> {
             ),
             ListTile(
               onTap: () {
-                Share.share("https://github.com/sinan70257/musify",
+                Share.share("https://github.com/YethiJNair/Down-Flutter-Music-Player",
                     subject: "Github Repo Of This App");
               },
               leading: const Icon(

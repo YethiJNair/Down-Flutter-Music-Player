@@ -12,13 +12,7 @@ import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 // ignore: must_be_immutable
 class BottomNavbar extends StatefulWidget {
   BottomNavbar({super.key});
-  // int currentIndex = 0;
-  // List pages = const [
-  //   HomePage(),
-  //   // playLists(),
-  //   Playlists(),
-  //   Settings(),
-  // ];
+
 
   @override
   State<BottomNavbar> createState() => _BottomNavbarState();

@@ -24,21 +24,21 @@ class Cards extends StatelessWidget {
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: SizedBox(
-              width: 650,
+              width: 460,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  InkWell(
-                    onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: ((context) => Favourites())));
-                    },
-                    child: AlbumArt(
-                      imageName: "assets/images/Cs47zArVYAAg5dS.jpg",
-                      head: "Favourites",
-                      song: alldbfavsongs.length.toString(),
-                    ),
-                  ),
+                  // InkWell(
+                  //   onTap: () {
+                  //     Navigator.of(context).push(MaterialPageRoute(
+                  //         builder: ((context) => Favourites())));
+                  //   },
+                  //   child: AlbumArt(
+                  //     imageName: "assets/images/music.jpg",
+                  //     head: "Favourites",
+                  //     song: alldbfavsongs.length.toString(),
+                  //   ),
+                  // ),
                   ValueListenableBuilder<Box<MostPlayed>>(
                       valueListenable:
                           Hive.box<MostPlayed>('mostplayed').listenable(),
@@ -49,8 +49,7 @@ class Cards extends StatelessWidget {
                                 builder: ((context) => mostlyPlayed())));
                           },
                           child: AlbumArt(
-                            imageName:
-                                "assets/images/4455a314edfff1a63c30f03d9d135c64.1000x1000x1.jpg",
+                            imageName: "assets/images/music.jpg",
                             head: "Most Played",
                             // song: finalpmsongs.length,
                           ),
@@ -62,7 +61,7 @@ class Cards extends StatelessWidget {
                           builder: ((context) => recentlyPlayed())));
                     },
                     child: AlbumArt(
-                      imageName: "assets/images/The_Weeknd_-_After_Hours.jpg",
+                      imageName: "assets/images/music.jpg",
                       head: "Recent Played",
                     ),
                   )
