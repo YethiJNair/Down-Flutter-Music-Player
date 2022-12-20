@@ -1,7 +1,6 @@
 import 'package:down/Colors/colors.dart';
 import 'package:down/screens/setting_scrren.dart';
 import 'package:flutter/material.dart';
-import 'package:down/screens/search_screen.dart';
 import 'package:down/widgets/cards.dart';
 import 'package:down/widgets/TitleWidget.dart';
 import 'package:down/widgets/allSongs.dart';
@@ -32,13 +31,13 @@ class _HomePageState extends State<HomePage> {
       child: Scaffold(
         backgroundColor: trans,
         appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(100),
+          preferredSize: const Size.fromHeight(70),
           child: Container(
               decoration: BoxDecoration(color: trans),
               child: Column(
                 children: [
                   SizedBox(
-                    height: height * 0.050,
+                    height: height * 0.039,
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),

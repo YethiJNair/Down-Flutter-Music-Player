@@ -5,6 +5,7 @@ import 'package:down/Colors/colors.dart';
 import 'package:down/model/dbfunctions.dart';
 import 'package:down/model/playlistmodel.dart';
 import 'package:down/model/songModel.dart';
+import 'package:down/widgets/floating_controller.dart';
 
 import 'package:flutter/material.dart';
 
@@ -55,7 +56,9 @@ class _ScreenPlaylistState extends State<ScreenPlaylist> {
         ),
       ),
       child: Scaffold(
+        bottomSheet: const FloatingController(),
         backgroundColor: trans,
+        appBar: AppBar(automaticallyImplyLeading: true),
         body: SafeArea(
           child: SingleChildScrollView(
             child: Column(
@@ -64,7 +67,7 @@ class _ScreenPlaylistState extends State<ScreenPlaylist> {
                   height: 370,
                   decoration: BoxDecoration(
                     color: trans,
-                    borderRadius: BorderRadius.only(
+                    borderRadius: const BorderRadius.only(
                       bottomLeft: Radius.circular(20),
                       bottomRight: Radius.circular(20),
                     ),

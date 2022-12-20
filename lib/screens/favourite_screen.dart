@@ -4,9 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:down/model/dbfunctions.dart';
 import 'package:down/model/favouriteModel.dart';
-import 'package:down/screens/bottom_navbar.dart';
 import 'package:down/screens/now_playing.dart';
-import 'package:down/widgets/floating_controller.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 class Favourites extends StatefulWidget {
@@ -39,8 +37,6 @@ class _FavouritesState extends State<Favourites> {
 
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
-    final width = MediaQuery.of(context).size.width;
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
@@ -55,18 +51,6 @@ class _FavouritesState extends State<Favourites> {
         appBar: AppBar(
           elevation: 0,
           automaticallyImplyLeading: false,
-          leading: IconButton(
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: ((c) => BottomNavbar()),
-                  ),
-                );
-              },
-              icon: const Icon(
-                Icons.arrow_back,
-                color: Colors.white,
-              )),
           title: Row(
             children: const [
               Text(
@@ -80,7 +64,6 @@ class _FavouritesState extends State<Favourites> {
           ),
           backgroundColor: trans,
         ),
-        bottomSheet: const FloatingController(),
         body: ValueListenableBuilder<Box<favsongs>>(
           valueListenable: Hive.box<favsongs>('favsongs').listenable(),
           builder: ((context, Box<favsongs> alldbfavsongs, child) {

@@ -1,6 +1,7 @@
 // ignore_for_file: file_names, camel_case_types, unused_local_variable, non_constant_identifier_names
 
 import 'package:assets_audio_player/assets_audio_player.dart';
+import 'package:down/widgets/floating_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:down/model/dbfunctions.dart';
@@ -53,6 +54,7 @@ class _recentlyPlayedState extends State<recentlyPlayed> {
         ),
       ),
       child: Scaffold(
+        bottomSheet: const FloatingController(),
         appBar: AppBar(
           elevation: 0,
           leading: IconButton(

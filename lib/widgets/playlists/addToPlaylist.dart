@@ -57,15 +57,7 @@ class _PlayScreenPlstState extends State<addToPlaylist> {
                                 Row(
                                   children: const [
                                     Text(
-                                      "C",
-                                      style: TextStyle(
-                                          fontFamily: "Inter",
-                                          fontSize: 35,
-                                          fontWeight: FontWeight.w900,
-                                          color: Colors.grey),
-                                    ),
-                                    Text(
-                                      "reate a playlist.",
+                                      "Create a playlist.",
                                       style: TextStyle(
                                           fontFamily: "Inter",
                                           fontSize: 35,
@@ -102,15 +94,7 @@ class _PlayScreenPlstState extends State<addToPlaylist> {
                             Row(
                               children: const [
                                 Text(
-                                  "Y",
-                                  style: TextStyle(
-                                      fontFamily: "Inter",
-                                      fontSize: 35,
-                                      fontWeight: FontWeight.w900,
-                                      color: Colors.grey),
-                                ),
-                                Text(
-                                  "our Playlists.",
+                                  "Your Playlists.",
                                   style: TextStyle(
                                       fontFamily: "Inter",
                                       fontSize: 35,
@@ -132,7 +116,7 @@ class _PlayScreenPlstState extends State<addToPlaylist> {
                                             child: Container(
                                               height: 40,
                                               child: Image.asset(
-                                                'assets/musify.png',
+                                                'assets/images/music.jpg',
                                                 fit: BoxFit.cover,
                                               ),
                                             ),

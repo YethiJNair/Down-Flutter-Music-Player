@@ -14,15 +14,7 @@ class appbarRecentPlayed extends StatelessWidget {
         title: Row(
           children: const [
             Text(
-              "R",
-              style: TextStyle(
-                  fontFamily: "Inter",
-                  fontSize: 35,
-                  fontWeight: FontWeight.w900,
-                  color: Colors.grey),
-            ),
-            Text(
-              "ecent Played.",
+              "Recent Played.",
               style: TextStyle(
                   fontFamily: "Inter",
                   fontSize: 35,

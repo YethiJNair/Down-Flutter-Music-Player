@@ -183,7 +183,7 @@ class _playListsState extends State<playLists> {
                                       borderRadius: BorderRadius.circular(10),
                                     ),
                                     backgroundColor:
-                                        Color.fromARGB(255, 50, 50, 50),
+                                        const Color.fromARGB(255, 50, 50, 50),
                                     title: const Text(
                                       "Delete Playlist",
                                       style: TextStyle(color: Colors.white),
@@ -197,7 +197,7 @@ class _playListsState extends State<playLists> {
                                           onPressed: () {
                                             Navigator.pop(context);
                                           },
-                                          child: Text("Cancel",
+                                          child: const Text("Cancel",
                                               style: TextStyle(
                                                   color: Color.fromARGB(
                                                       255, 213, 213, 213)))),
@@ -206,7 +206,7 @@ class _playListsState extends State<playLists> {
                                             playlistbox.deleteAt(index);
                                             Navigator.pop(context);
                                           },
-                                          child: Text("Delete",
+                                          child: const Text("Delete",
                                               style: TextStyle(
                                                   color: Color.fromARGB(
                                                       255, 213, 213, 213))))
@@ -223,7 +223,7 @@ class _playListsState extends State<playLists> {
                         ],
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     )
                   ],
@@ -375,15 +375,7 @@ class _playListsState extends State<playLists> {
             Row(
               children: const [
                 Text(
-                  "E",
-                  style: TextStyle(
-                      fontFamily: "Inter",
-                      fontSize: 35,
-                      fontWeight: FontWeight.w900,
-                      color: Colors.grey),
-                ),
-                Text(
-                  "dit Playlist",
+                  "Edit Playlist",
                   style: TextStyle(
                       fontFamily: "Inter",
                       fontSize: 35,
@@ -398,7 +390,7 @@ class _playListsState extends State<playLists> {
             Form(
               key: formGlobalKey1,
               child: TextFormField(
-                style: TextStyle(color: Colors.white),
+                style: const TextStyle(color: Colors.white),
                 controller: controller,
                 cursorHeight: 25,
                 decoration: const InputDecoration(

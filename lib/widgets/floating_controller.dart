@@ -20,22 +20,6 @@ class FloatingController extends StatefulWidget {
 
 class _FloatingControllerState extends State<FloatingController> {
   AssetsAudioPlayer player = AssetsAudioPlayer.withId('0');
-  // AssetsAudioPlayer player = AssetsAudioPlayer();
-  // late AnimationController _animationController;
-
-  // bool isPlaying = false;
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   player.open(
-  //       Audio(
-  //           "assets/audio/X2Download.app - The Weeknd - Save Your Tears (Official Music Video) (128 kbps).mp3"),
-  //       autoStart: false,
-  //       showNotification: true);
-  //   _animationController =
-  //       AnimationController(vsync: this, duration: Duration(milliseconds: 450));
-  // }
-
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder<Box<Songs>>(
@@ -44,7 +28,9 @@ class _FloatingControllerState extends State<FloatingController> {
           List<Songs> allDbdongs = allsongbox.values.toList();
           return player.builderCurrent(builder: (context, playing) {
             return Container(
-              color: black,
+              decoration:
+                  BoxDecoration(color: black, border: Border.all(color: black)),
+              // color: black,
               height: 80,
               // width: MediaQuery.of(context).size.width,
               width: double.infinity,
@@ -75,7 +61,7 @@ class _FloatingControllerState extends State<FloatingController> {
                     nullArtworkWidget: ClipRRect(
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                       child: Image.asset(
-                        'assets/images/musify copy0.jpg',
+                        'assets/images/music.jpg',
                         fit: BoxFit.cover,
                       ),
                     ),

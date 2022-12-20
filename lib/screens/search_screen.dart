@@ -30,8 +30,6 @@ class _ScreenSearchState extends State<ScreenSearch> {
   late List<Songs> another = List.from(dbSongs);
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
-    final height = MediaQuery.of(context).size.height;
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
@@ -43,6 +41,7 @@ class _ScreenSearchState extends State<ScreenSearch> {
       ),
       child: Scaffold(
         appBar: AppBar(
+          elevation: 0,
           automaticallyImplyLeading: false,
           backgroundColor: trans,
           title: searchbar(context),
@@ -65,7 +64,7 @@ class _ScreenSearchState extends State<ScreenSearch> {
 
   searchbar(BuildContext context) {
     return TextFormField(
-      autofocus: true,
+      autofocus: false,
       style: const TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
       onTap: () {},
       controller: searchController,

@@ -6,98 +6,130 @@ import 'package:down/widgets/floating_controller.dart';
 import '../Colors/colors.dart';
 import 'home_page.dart';
 import 'playlists.dart';
-import 'setting_scrren.dart';
-import 'package:bottom_navy_bar/bottom_navy_bar.dart';
+import 'package:flashy_tab_bar2/flashy_tab_bar2.dart';
 
 // ignore: must_be_immutable
 class BottomNavbar extends StatefulWidget {
   BottomNavbar({super.key});
-
 
   @override
   State<BottomNavbar> createState() => _BottomNavbarState();
 }
 
 class _BottomNavbarState extends State<BottomNavbar> {
-  int index = 0;
-  final navigationKey = GlobalKey<CurvedNavigationBarState>();
+//   int index = 0;
+//   final navigationKey = GlobalKey<CurvedNavigationBarState>();
 
-  final screens = [
-    HomePage(),
-    ScreenSearch(),
-    Favourites(),
-    Playlists(),
+//   final screens = [
+//     const HomePage(),
+//     const ScreenSearch(),
+//     const Favourites(),
+//     const Playlists(),
+//   ];
+//   @override
+//   Widget build(BuildContext context) {
+//     final items = <Widget>[
+//       const Icon(
+//         Icons.home_filled,
+//         size: 30,
+//       ),
+//       const Icon(Icons.search, size: 30),
+//       const Icon(Icons.favorite, size: 30),
+//       const Icon(Icons.playlist_add, size: 30),
+//     ];
+//     return Scaffold(
+//       bottomSheet: const FloatingController(),
+//       body: screens[index],
+//       extendBody: false,
+//       backgroundColor: black,
+//       bottomNavigationBar: Theme(
+//         data: Theme.of(context)
+//             .copyWith(iconTheme: IconThemeData(color: Colors.white)),
+//         child: CurvedNavigationBar(
+//           color: const Color.fromARGB(255, 12, 97, 103),
+//           buttonBackgroundColor:const  Color.fromARGB(255, 12, 97, 103),
+//           backgroundColor: Colors.transparent,
+//           items: items,
+//           animationCurve: Curves.easeInOut,
+//           animationDuration:const  Duration(milliseconds: 250),
+//           height: 55,
+//           index: index,
+//           onTap: (index) => setState(() => this.index = index),
+//         ),
+//       ),
+
+//     );
+//   }
+// }
+
+  int _selectedIndex = 0;
+
+  List<Widget> tabItems = [
+    const HomePage(),
+    const ScreenSearch(),
+    const Favourites(),
+    const Playlists(),
   ];
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    final items = <Widget>[ const
-      Icon(
-        Icons.home_filled,
-        size: 30,
-      ),
-      const Icon(Icons.search, size: 30),
-      const Icon(Icons.favorite, size: 30),
-      const Icon(Icons.playlist_add, size: 30),
-    ];
-    return Scaffold(
-      bottomSheet: const FloatingController(),
-      body: screens[index],
-      extendBody: true,
-      backgroundColor: black,
-      bottomNavigationBar: Theme(
-        data: Theme.of(context)
-            .copyWith(iconTheme: IconThemeData(color: Colors.white)),
-        child: CurvedNavigationBar(
-          color: Color.fromARGB(255, 12, 97, 103),
-          buttonBackgroundColor: Color.fromARGB(255, 12, 97, 103),
-          backgroundColor: Colors.transparent,
-          items: items,
-          animationCurve: Curves.easeInOut,
-          animationDuration: Duration(milliseconds: 250),
-          height: 55,
-          index: index,
-          onTap: (index) => setState(() => this.index = index),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        bottomSheet: FloatingController(),
+        body: Center(
+          child: tabItems[_selectedIndex],
+        ),
+        bottomNavigationBar: FlashyTabBar(
+          animationCurve: Curves.linear,
+          backgroundColor: Color.fromARGB(255, 0, 0, 0),
+          selectedIndex: _selectedIndex,
+          iconSize: 30,
+          showElevation: false, // use this to remove appBar's elevation
+          onItemSelected: (index) => setState(() {
+            _selectedIndex = index;
+          }),
+          items: [
+            FlashyTabBarItem(
+              activeColor: white,
+              icon: Icon(
+                Icons.home_filled,
+                color: white,
+              ),
+              title: Text('Home'),
+            ),
+            FlashyTabBarItem(
+              activeColor: white,
+              icon: Icon(
+                Icons.search,
+                color: cyan,
+              ),
+              title: Text('Search'),
+            ),
+            FlashyTabBarItem(
+              activeColor: white,
+              icon: Icon(
+                Icons.favorite,
+                color: Colors.pink,
+              ),
+              title: Text('Favourites'),
+            ),
+            FlashyTabBarItem(
+              activeColor: white,
+              icon: Icon(
+                Icons.playlist_add,
+                color: white,
+              ),
+              title: Text('Playlist'),
+            ),
+          ],
         ),
       ),
-      // bottomSheet: FloatingController(),
-      // body: widget.pages[widget.currentIndex],
-      // bottomNavigationBar: BottomNavigationBar(
-      //   showSelectedLabels: false,
-      //   showUnselectedLabels: false,
-      //   unselectedItemColor: white,
-      //   selectedItemColor: cyan,
-      //   selectedIconTheme: IconThemeData(color: cyan),
-      //   onTap: (newCurrentIndex) {
-      //     setState(() {
-      //       widget.currentIndex = newCurrentIndex;
-      //     });
-      //   },
-      //   currentIndex: widget.currentIndex,
-      //   backgroundColor: black,
-      //   items: const <BottomNavigationBarItem>[
-      //     BottomNavigationBarItem(
-      //       icon: Icon(
-      //         Icons.home_filled,
-      //         size: 30,
-      //       ),
-      //       label: 'Home',
-      //     ),
-      //     BottomNavigationBarItem(
-      //       icon: Icon(
-      //         Icons.playlist_add,
-      //         size: 30,
-      //       ),
-      //       label: 'Playlists',
-      //     ),
-      //     BottomNavigationBarItem(
-      //       icon: Icon(
-      //         Icons.settings,
-      //         size: 30,
-      //       ),
-      //       label: 'Settings',
-      //     ),
-      //   ],
-      // ),
     );
   }
 }

@@ -71,7 +71,7 @@ class _addToFavState extends State<addToFav> {
             },
             icon: const Icon(
               Icons.favorite,
-              color: Colors.grey,
+              color: Colors.pink,
             ));
   }
 }

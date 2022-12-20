@@ -1,6 +1,7 @@
 // ignore_for_file: camel_case_types, avoid_print, file_names
 
 import 'package:assets_audio_player/assets_audio_player.dart';
+import 'package:down/widgets/floating_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:down/model/dbfunctions.dart';
@@ -58,40 +59,39 @@ class _mostlyPlayedState extends State<mostlyPlayed> {
           colors: [gr1, Colors.black],
         ),
       ),
-      child: Container(
-        child: Scaffold(
-          appBar: (AppBar(
-            leading: IconButton(
-                onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => BottomNavbar(),
-                  ));
-                },
-                icon: const Icon(
-                  Icons.arrow_back,
-                  color: Colors.white,
-                )),
-            automaticallyImplyLeading: false,
-            backgroundColor: trans,
-            elevation: 0,
-            title: Row(
-              children: const [
-                Text(
-                  "Most Played",
-                  style: TextStyle(
-                      fontFamily: "Inter",
-                      fontSize: 35,
-                      fontWeight: FontWeight.w900,
-                      color: Colors.white),
-                ),
-              ],
-            ),
-          )),
+      child: Scaffold(
+        bottomSheet: const FloatingController(),
+        appBar: (AppBar(
+          leading: IconButton(
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => BottomNavbar(),
+                ));
+              },
+              icon: const Icon(
+                Icons.arrow_back,
+                color: Colors.white,
+              )),
+          automaticallyImplyLeading: false,
           backgroundColor: trans,
-          body: SafeArea(
-            child: Column(
-              children: [showmostlyplayed()],
-            ),
+          elevation: 0,
+          title: Row(
+            children: const [
+              Text(
+                "Most Played",
+                style: TextStyle(
+                    fontFamily: "Inter",
+                    fontSize: 35,
+                    fontWeight: FontWeight.w900,
+                    color: Colors.white),
+              ),
+            ],
+          ),
+        )),
+        backgroundColor: trans,
+        body: SafeArea(
+          child: Column(
+            children: [showmostlyplayed()],
           ),
         ),
       ),
