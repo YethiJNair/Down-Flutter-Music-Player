@@ -17,50 +17,6 @@ class BottomNavbar extends StatefulWidget {
 }
 
 class _BottomNavbarState extends State<BottomNavbar> {
-//   int index = 0;
-//   final navigationKey = GlobalKey<CurvedNavigationBarState>();
-
-//   final screens = [
-//     const HomePage(),
-//     const ScreenSearch(),
-//     const Favourites(),
-//     const Playlists(),
-//   ];
-//   @override
-//   Widget build(BuildContext context) {
-//     final items = <Widget>[
-//       const Icon(
-//         Icons.home_filled,
-//         size: 30,
-//       ),
-//       const Icon(Icons.search, size: 30),
-//       const Icon(Icons.favorite, size: 30),
-//       const Icon(Icons.playlist_add, size: 30),
-//     ];
-//     return Scaffold(
-//       bottomSheet: const FloatingController(),
-//       body: screens[index],
-//       extendBody: false,
-//       backgroundColor: black,
-//       bottomNavigationBar: Theme(
-//         data: Theme.of(context)
-//             .copyWith(iconTheme: IconThemeData(color: Colors.white)),
-//         child: CurvedNavigationBar(
-//           color: const Color.fromARGB(255, 12, 97, 103),
-//           buttonBackgroundColor:const  Color.fromARGB(255, 12, 97, 103),
-//           backgroundColor: Colors.transparent,
-//           items: items,
-//           animationCurve: Curves.easeInOut,
-//           animationDuration:const  Duration(milliseconds: 250),
-//           height: 55,
-//           index: index,
-//           onTap: (index) => setState(() => this.index = index),
-//         ),
-//       ),
-
-//     );
-//   }
-// }
 
   int _selectedIndex = 0;
 

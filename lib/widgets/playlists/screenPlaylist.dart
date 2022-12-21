@@ -58,7 +58,11 @@ class _ScreenPlaylistState extends State<ScreenPlaylist> {
       child: Scaffold(
         bottomSheet: const FloatingController(),
         backgroundColor: trans,
-        appBar: AppBar(automaticallyImplyLeading: true),
+        appBar: AppBar(
+          automaticallyImplyLeading: true,
+          backgroundColor: trans,
+          elevation: 0,
+        ),
         body: SafeArea(
           child: SingleChildScrollView(
             child: Column(

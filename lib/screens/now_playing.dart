@@ -91,16 +91,16 @@ class _NowPlaying2State extends State<NowPlaying2> {
                             height: height * 0.06,
                           ),
                           SizedBox(
-                            width: width * 0.75,
-                            height: height * 0.40,
+                            width: width * 0.92,
+                            height: height * 0.49,
                             child: QueryArtworkWidget(
                               size: 2000,
                               quality: 100,
                               id: int.parse(playing.audio.audio.metas.id!),
                               artworkQuality: FilterQuality.high,
                               type: ArtworkType.AUDIO,
-                              artworkHeight: height * 0.40,
-                              artworkWidth: width * 0.75,
+                              artworkHeight: height * 0.49,
+                              artworkWidth: width * 0.92,
                               artworkBorder: BorderRadius.circular(10),
                               artworkFit: BoxFit.cover,
                               nullArtworkWidget: ClipRRect(
