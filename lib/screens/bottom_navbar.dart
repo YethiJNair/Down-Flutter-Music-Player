@@ -37,13 +37,13 @@ class _BottomNavbarState extends State<BottomNavbar> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        bottomSheet: FloatingController(),
+        bottomSheet: const FloatingController(),
         body: Center(
           child: tabItems[_selectedIndex],
         ),
         bottomNavigationBar: FlashyTabBar(
           animationCurve: Curves.linear,
-          backgroundColor: Color.fromARGB(255, 0, 0, 0),
+          backgroundColor: const Color.fromARGB(255, 0, 0, 0),
           selectedIndex: _selectedIndex,
           iconSize: 30,
           showElevation: false, // use this to remove appBar's elevation

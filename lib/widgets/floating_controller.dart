@@ -1,9 +1,5 @@
-import 'dart:developer';
-
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:down/Colors/colors.dart';
-import 'package:down/model/mostPlayed.dart';
-import 'package:down/model/recentlyPlayed.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:down/model/songModel.dart';
@@ -43,10 +39,7 @@ class _FloatingControllerState extends State<FloatingController> {
                         MaterialPageRoute(
                             builder: ((context) => NowPlaying2())));
                   }),
-                  // leading: ClipRRect(
-                  //   child: Image.asset("assets/images/The_Weeknd_-_After_Hours.png"),
-                  //   borderRadius: BorderRadius.all(Radius.circular(10)),
-                  // ),
+                  
                   contentPadding: const EdgeInsets.all(0),
                   leading: QueryArtworkWidget(
                     id: int.parse(playing.audio.audio.metas.id!),
@@ -59,7 +52,7 @@ class _FloatingControllerState extends State<FloatingController> {
                     quality: 100,
                     artworkFit: BoxFit.cover,
                     nullArtworkWidget: ClipRRect(
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      borderRadius: const BorderRadius.all(Radius.circular(10)),
                       child: Image.asset(
                         'assets/images/music.jpg',
                         fit: BoxFit.cover,
@@ -69,7 +62,7 @@ class _FloatingControllerState extends State<FloatingController> {
                   title: Text(
                     player.getCurrentAudioTitle,
                     overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
+                    style: const TextStyle(
                         fontFamily: "Inter",
                         fontWeight: FontWeight.w900,
                         color: Colors.white),
@@ -77,7 +70,7 @@ class _FloatingControllerState extends State<FloatingController> {
                   subtitle: Text(
                     player.getCurrentAudioArtist,
                     overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
+                    style: const TextStyle(
                         fontFamily: "Inter",
                         fontWeight: FontWeight.bold,
                         color: Color.fromARGB(255, 180, 179, 179)),
@@ -103,7 +96,7 @@ class _FloatingControllerState extends State<FloatingController> {
                                 await player.pause();
                               }
                             },
-                            icon: Icon(
+                            icon: const Icon(
                               Icons.skip_previous,
                               color: Colors.white,
                             ),
@@ -131,7 +124,7 @@ class _FloatingControllerState extends State<FloatingController> {
                                 await player.pause();
                               }
                             },
-                            icon: Icon(
+                            icon: const Icon(
                               Icons.skip_next,
                               color: Colors.white,
                             ),
@@ -147,16 +140,4 @@ class _FloatingControllerState extends State<FloatingController> {
         }));
   }
 
-  // void _handleOnPress() {
-  //   setState(() {
-  //     isPlaying = !isPlaying;
-  //     if (isPlaying) {
-  //       _animationController.forward();
-  //       player.play();
-  //     } else {
-  //       _animationController.reverse();
-  //       player.pause();
-  //     }
-  //   });
-  // }
 }
