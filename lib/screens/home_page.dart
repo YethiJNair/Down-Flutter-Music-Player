@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage> {
       child: Scaffold(
         backgroundColor: trans,
         appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(70),
+          preferredSize: const Size.fromHeight(71),
           child: Container(
               decoration: BoxDecoration(color: trans),
               child: Column(
